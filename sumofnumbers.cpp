@@ -4,21 +4,21 @@ using namespace std;
 int main()
 {
 
-  int num1, num2;
+  int a, b;
 
   cout<<"Enter an integer: ";
-  cin>>num1;
+  cin>>a;
   cout<<"Enter another integer: ";
-  cin>>num2;
+  cin>>b;
 
   int total = 0;
-  for (int x=num1; x<=num2; x++)
+  for (int x=a; x<=b; x++)
   {
           total += x;
 
   }
 
-  cout<<"The sum of the integers between the two numbers is "<< total;
+  cout<<"The sum of the integers between your numbers is "<< total << '\n';
 
   return 0;
 }
