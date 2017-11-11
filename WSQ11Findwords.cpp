@@ -1,37 +1,44 @@
 #include <iostream>
-#include <string>
 #include <fstream>
+#include <string>
 using namespace std;
 
+int countbanas(string filename){
+  string line;
+  int bananacount=0;
+  int l=0;
 
-int main()
-{
+  ifstream file(filename.c_str());
+  cout << "Write the word you're looking for:\n" ;
+  string word ;
+  cin >> word ;
 
-cout  << "Please enter the file name:\n" ;
-string filename ;
-cin >> filename ;
+    if (file.is_open() ){
 
-ifstream file( filename.c_str() ) ;
+      while(getline(file, line)){
+        for (int i=0;i<=line.size();i++){
+          line[i]= tolower(line[i]);
+        }
+        l = line.find(word);
+        while (l>=0) {
+          bananacount +=1;
+          l = line.find(word,l+6);
+        }
+      }
 
-  if(file.is_open() )
- 	{
- 		cout << "Write the word you're searching for:\n" ;
- 		string word ;
- 		cin >> word ;
+    } else{
+      cout << "The file was not found.";
+    }
+    return bananacount;
+}
 
- 		int countwords = 0 ;
- 	string candidate ;
- 		while( file >> candidate ) 
- 		{
- 			if( word == candidate ) ++countwords ;
- 		}
+int main(){
+  cout  << "Please enter the file name:\n" ;
+  string filename ;
+  cin >> filename ;
 
- 		cout << "The word '" << word << "' has been found " << countwords << " times.\n" ;
- 	}
+  int bananafinal = countbanas(filename);
+  cout << "The word has been found " << bananafinal << " times.\n" ;
 
- 	else
- 	{
- 		cout << "Error! File not found!\n" ;
- 		return 0 ;
- 	}
- }
+return 0;
+}
